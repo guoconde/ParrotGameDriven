@@ -32,8 +32,29 @@ main {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    gap: 30px;
+    gap: 35px;
 
     
     width: 80%;
+}
+
+.cartao {
+    width: 117px;
+    height: 146px;
+
+    border-radius: 5px;
+    border: 2px solid #99cea8;
+
+    background-color: #a7e9af;
+
+    position: relative;
+}
+
+.cartao-frente, .cartao-verso{
+    width: 100px;
+    height: 100px;
+
+    position: absolute;
+    top: 20px;
+    left: 7px;
 }
