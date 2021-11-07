@@ -1,4 +1,4 @@
-let qtdCartas = 4
+let qtdCartas = ''
 let nome = ''
 let primeiraCarta = ''
 let segundaCarta = ''
@@ -11,6 +11,25 @@ let novoJogo = ''
 
 
 const main = document.querySelector('#main')
+
+function pegarNomes() {
+
+    while (nome == '' || nome == null) {
+        nome = prompt('Qual o seu nome?')
+    }
+
+    getCards()
+}
+
+pegarNomes()
+
+function getCards() {
+
+    while (qtdCartas > 14 || qtdCartas < 4 || qtdCartas % 2 !== 0) {
+        qtdCartas = parseInt(prompt(`Olá ${nome}, com quantas cartas você quer jogar? Escolha números pares de 4 a 14`));
+    }
+
+}
 
 function relogio() {
 
@@ -94,17 +113,17 @@ function finalizarJogo() {
         if (completa.length == qtdCartas) {
 
             if (relogioMin < 1) {
-                alert(`Parabéns você ganhou com ${contador} jogadas. Com o tempo de: ${relogioSeg} segundos.`)
+                alert(`Parabéns ${nome}, você ganhou com ${contador} jogadas. Com o tempo de: ${relogioSeg} segundos.`)
                 recomecar()
             } else {
                 if (relogioMin < 2 && relogioMin >= 1) {
-                    alert(`Parabéns você ganhou com ${contador} jogadas. Com o tempo de: 0${relogioMin} minuto e ${relogioSeg} segundos.`)
+                    alert(`Parabéns ${nome}, você ganhou com ${contador} jogadas. Com o tempo de: 0${relogioMin} minuto e ${relogioSeg} segundos.`)
                     recomecar()
                 } else if (relogioMin < 10 && relogioMin >= 2) {
-                    alert(`Parabéns você ganhou com ${contador} jogadas. Com o tempo de: 0${relogioMin} minutos e ${relogioSeg} segundos.`)
+                    alert(`Parabéns ${nome}, você ganhou com ${contador} jogadas. Com o tempo de: 0${relogioMin} minutos e ${relogioSeg} segundos.`)
                     recomecar()
                 } else {
-                    alert(`Parabéns você ganhou com ${contador} jogadas. Com o tempo de: ${relogioMin} minutos e ${relogioSeg} segundos.`)
+                    alert(`Parabéns ${nome}, você ganhou com ${contador} jogadas. Com o tempo de: ${relogioMin} minutos e ${relogioSeg} segundos.`)
                     recomecar()
                 }
             }
@@ -163,37 +182,5 @@ function limparVariaveis(igual = false) {
 
 }
 
-
-
-
 const cartao = document.querySelectorAll('.cartao')
 cartao.forEach(el => el.addEventListener('click', virarCarta))
-
-// for (let i = 0; i < qtdCartas / 2; i++) {
-
-//     main.innerHTML += `
-//         <div class="cartao">
-//             <img class="cartao-frente ${cartas[i]}" src="./Assets/${cartas[i]}.gif">
-//             <img class="cartao-verso" src="./Assets/front.png">
-//         </div>
-//         `
-// }
-
-// function getName() {
-
-//     while (nome == '' || nome == null) {
-//         nome = prompt('Qual o seu nome?')
-//     }
-
-//     getCards()
-// }
-
-
-// function getCards() {
-
-//     while (qtdCartas > 14 || qtdCartas < 4 || qtdCartas % 2 !== 0) {
-//         qtdCartas = parseInt(prompt("Com quantas cartas você quer jogar? Escolha números pares de 4 a 14"));
-//     }
-
-//     createGame()
-// }
