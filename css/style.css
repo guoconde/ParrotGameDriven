@@ -74,3 +74,17 @@ main {
 .cartao-frente {
     transform: rotateY(180deg);
 }
+
+section {
+    position: fixed;
+    top: 40px;
+    right: 40px;
+
+    font-family: Roboto;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+
+    color: #75B79E;
+}
