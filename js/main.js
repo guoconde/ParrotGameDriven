@@ -94,11 +94,9 @@ function aleatorio() {
 
         rand[i].style.order = random
     }
-
 }
 
 aleatorio()
-
 
 function verificarIgualdade() {
 
@@ -137,7 +135,6 @@ function limparVariaveis(igual = false) {
     travaVirar = false
     primeiraCarta = ''
     segundaCarta = ''
-
 }
 
 function finalizarJogo() {
@@ -162,13 +159,11 @@ function finalizarJogo() {
                 }
             }
         }
-
     }, 2000)
 
     if (completa.length == qtdCartas) {
         clearInterval(relogioFunc)
     }
-
 }
 
 function recomecar() {
