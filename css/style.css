@@ -35,7 +35,7 @@ main {
     gap: 35px;
 
     
-    width: 80%;
+    width: 60%;
 }
 
 .cartao {
@@ -48,6 +48,18 @@ main {
     background-color: #a7e9af;
 
     position: relative;
+
+    transform-style: preserve-3d;
+    transition: 1s;
+}
+
+.cartao:active {
+    transform: scale(1.1);
+    transition: 0s;
+}
+
+.cartao.virar {
+    transform: rotateY(180deg);
 }
 
 .cartao-frente, .cartao-verso{
@@ -57,4 +69,8 @@ main {
     position: absolute;
     top: 20px;
     left: 7px;
+}
+
+.cartao-frente {
+    transform: rotateY(180deg);
 }
