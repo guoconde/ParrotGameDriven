@@ -53,10 +53,10 @@ main {
     transition: 1s;
 }
 
-.cartao:active {
+/* .cartao:active {
     transform: scale(1.1);
     transition: 0s;
-}
+} */
 
 .cartao.virar {
     transform: rotateY(180deg);
@@ -77,14 +77,34 @@ main {
 
 section {
     position: fixed;
-    top: 40px;
-    right: 40px;
+    top: 17px;
+    right: 30px;
 
     font-family: Roboto;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 700;
-    line-height: 66px;
-    letter-spacing: -0.004em;
 
     color: #75B79E;
+}
+
+@media (max-width: 630px) {
+    section {
+        position: fixed;
+        top: 90%;
+        right: 5%;
+
+        font-size: 30px;
+    }
+
+    header {
+        width: 70%;
+
+        line-height: 42px;
+        font-size: 36px;
+    }
+
+    main {
+        margin-bottom: 40px;
+    }
+
 }

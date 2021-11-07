@@ -1,5 +1,4 @@
-let qtdCartas = ''
-let nome = ''
+let qtdCartas = 0
 let primeiraCarta = ''
 let segundaCarta = ''
 let travaVirar = false
@@ -12,24 +11,15 @@ let novoJogo = ''
 
 const main = document.querySelector('#main')
 
-function pegarNomes() {
-
-    while (nome == '' || nome == null) {
-        nome = prompt('Qual o seu nome?')
-    }
-
-    getCards()
-}
-
-pegarNomes()
-
-function getCards() {
+function pegarCartas() {
 
     while (qtdCartas > 14 || qtdCartas < 4 || qtdCartas % 2 !== 0) {
-        qtdCartas = parseInt(prompt(`Olá ${nome}, com quantas cartas você quer jogar? Escolha números pares de 4 a 14`));
+        qtdCartas = parseInt(prompt(`Olá, com quantas cartas você quer jogar? Escolha números pares de 4 a 14`));
     }
 
 }
+
+pegarCartas()
 
 function relogio() {
 
@@ -75,6 +65,9 @@ for (let i = 0; i < qtdCartas / 2; i++) {
     `
 }
 
+const cartao = document.querySelectorAll('.cartao')
+cartao.forEach(el => el.addEventListener('click', virarCarta))
+
 function virarCarta() {
     if (travaVirar) return false
     contador++
@@ -83,7 +76,7 @@ function virarCarta() {
 
     if (primeiraCarta == '') {
         primeiraCarta = this
-
+        primeiraCarta.removeEventListener('click', virarCarta)
         return false
     }
     segundaCarta = this
@@ -97,7 +90,7 @@ const rand = document.querySelectorAll('.cartao')
 function aleatorio() {
 
     for (let i = 0; i < rand.length; i++) {
-        let random = Math.floor(Math.random() * qtdCartas)
+        let random = Math.floor(Math.random() * 1000)
 
         rand[i].style.order = random
     }
@@ -106,53 +99,18 @@ function aleatorio() {
 
 aleatorio()
 
-function finalizarJogo() {
-    const completa = document.querySelectorAll('.completa')
-
-    setTimeout(() => {
-        if (completa.length == qtdCartas) {
-
-            if (relogioMin < 1) {
-                alert(`Parabéns ${nome}, você ganhou com ${contador} jogadas. Com o tempo de: ${relogioSeg} segundos.`)
-                recomecar()
-            } else {
-                if (relogioMin < 2 && relogioMin >= 1) {
-                    alert(`Parabéns ${nome}, você ganhou com ${contador} jogadas. Com o tempo de: 0${relogioMin} minuto e ${relogioSeg} segundos.`)
-                    recomecar()
-                } else if (relogioMin < 10 && relogioMin >= 2) {
-                    alert(`Parabéns ${nome}, você ganhou com ${contador} jogadas. Com o tempo de: 0${relogioMin} minutos e ${relogioSeg} segundos.`)
-                    recomecar()
-                } else {
-                    alert(`Parabéns ${nome}, você ganhou com ${contador} jogadas. Com o tempo de: ${relogioMin} minutos e ${relogioSeg} segundos.`)
-                    recomecar()
-                }
-            }
-
-        }
-
-    }, 2000)
-
-    if (completa.length == qtdCartas) {
-        clearInterval(relogioFunc)
-    }
-
-}
-
-function recomecar() {
-    novoJogo = prompt('Gostaria de jogar novamente?')
-
-    if (novoJogo == 'sim' || novoJogo == 's' || novoJogo == 'yes' || novoJogo == '') {
-        window.location.reload()
-    } else {
-        alert('Ah que pena! Até logo.')
-    }
-}
 
 function verificarIgualdade() {
 
     let igual = primeiraCarta.dataset.cartao === segundaCarta.dataset.cartao
 
-    !igual ? desabilitarVirar() : limparVariaveis(igual)
+    if (!igual) {
+        desabilitarVirar()
+        primeiraCarta.addEventListener('click', virarCarta)
+    } else {
+        limparVariaveis(igual)
+    }
+
 }
 
 function desabilitarVirar() {
@@ -182,5 +140,43 @@ function limparVariaveis(igual = false) {
 
 }
 
-const cartao = document.querySelectorAll('.cartao')
-cartao.forEach(el => el.addEventListener('click', virarCarta))
+function finalizarJogo() {
+    const completa = document.querySelectorAll('.completa')
+
+    setTimeout(() => {
+        if (completa.length == qtdCartas) {
+
+            if (relogioMin < 1) {
+                alert(`Parabéns, você ganhou com ${contador} jogadas. Com o tempo de: ${relogioSeg} segundos.`)
+                recomecar()
+            } else {
+                if (relogioMin < 2 && relogioMin >= 1) {
+                    alert(`Parabéns, você ganhou com ${contador} jogadas. Com o tempo de: 0${relogioMin} minuto e ${relogioSeg} segundos.`)
+                    recomecar()
+                } else if (relogioMin < 10 && relogioMin >= 2) {
+                    alert(`Parabéns, você ganhou com ${contador} jogadas. Com o tempo de: 0${relogioMin} minutos e ${relogioSeg} segundos.`)
+                    recomecar()
+                } else {
+                    alert(`Parabéns, você ganhou com ${contador} jogadas. Com o tempo de: ${relogioMin} minutos e ${relogioSeg} segundos.`)
+                    recomecar()
+                }
+            }
+        }
+
+    }, 2000)
+
+    if (completa.length == qtdCartas) {
+        clearInterval(relogioFunc)
+    }
+
+}
+
+function recomecar() {
+    novoJogo = prompt('Gostaria de jogar novamente?')
+
+    if (novoJogo == 'sim' || novoJogo == 's' || novoJogo == 'yes' || novoJogo == '') {
+        window.location.reload()
+    } else {
+        alert('Ah que pena! Até logo.')
+    }
+}
