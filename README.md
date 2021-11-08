@@ -8,4 +8,4 @@ Linguagem HTML / CSS /JS
 
 Exercício de Responsividade / JS
 
-Url do resultado final (codesandbox) : Exercício em produção
+Url do resultado final (codesandbox) : https://guoconde.github.io/ParrotGameDriven/
